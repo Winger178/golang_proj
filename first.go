@@ -99,19 +99,24 @@ func calculate(input string) (int, string) {
 
 	//if reflect.TypeOf(convertToArabic(leftOperand)) == int && reflect.TypeOf(convertToArabic(rightOperand)) == int {
 	//if 1 <= leftOperand && leftOperand <= 10 && 1 <= rightOperand && rightOperand <= 10 {
-
-	switch operator {
-	case '+':
-		result = convertToArabic(leftOperandStr) + convertToArabic(rightOperandStr)
-	case '-':
-		result = convertToArabic(leftOperandStr) - convertToArabic(rightOperandStr)
-	case '*':
-		result = convertToArabic(leftOperandStr) * convertToArabic(rightOperandStr)
-	case '/':
-		result = convertToArabic(leftOperandStr) / convertToArabic(rightOperandStr)
+	if 1 <= convertToArabic(leftOperandStr) && convertToArabic(leftOperandStr) <= 10 && 1 <= convertToArabic(rightOperandStr) && convertToArabic(rightOperandStr) <= 10 {
+		switch operator {
+		case '+':
+			result = convertToArabic(leftOperandStr) + convertToArabic(rightOperandStr)
+		case '-':
+			result = convertToArabic(leftOperandStr) - convertToArabic(rightOperandStr)
+		case '*':
+			result = convertToArabic(leftOperandStr) * convertToArabic(rightOperandStr)
+		case '/':
+			result = convertToArabic(leftOperandStr) / convertToArabic(rightOperandStr)
+		}
+		if result > 0 {
+			return result, "Римский ответ"
+		} else {
+			return result, "Не бывает римских чисел меньше либо равны нулю!"
+		}
 	}
-	return result, "Римский ответ"
 	//}
 	//}
-	return result, "Что-то не так"
+	return result, "Неправильно введеный формат данных"
 }
